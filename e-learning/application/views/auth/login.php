@@ -29,7 +29,7 @@
                             <div class="register-link">
                                 <p>
                                     Don't you have account?
-                                    <a href="<?= base_url('user/registerSiswa')?>">Sign Up Here</a>
+                                    <a href="<?= base_url('user/registerGuru')?>">Sign Up Here</a>
                                 </p>
                             </div>
                         </div>

@@ -33,6 +33,20 @@ class admin extends CI_Controller {
         $this->load->view('admin/dataPengajar',$data);
         $this->load->view('part/footer');
     }
+
+    public function hapusPengajar($id)
+    {
+        $this->db->query("DELETE FROM el_pengajar WHERE id = $id");
+        redirect('Admin/dataPengajar/1');
+    }
+
+    
+    public function hapusSiswa($id)
+    {
+        $this->db->query("DELETE FROM el_siswa WHERE id = $id");
+        redirect('Admin/dataSiswa/1');
+    }
+
     public function detailSiswa($id)
     {
     	$data['siswa']=$this->Admin_model->view_where('el_siswa',array('id'=>$id))->result();
@@ -127,7 +141,7 @@ class admin extends CI_Controller {
     public function updateStatusPengajar($id,$status)
     {
         $this->Admin_model->update(array('status_id'=>$status),array('id'=>$id),'el_pengajar');
-        redirect('Admin/dataadmin/'.$status);
+        redirect('Admin/dataPengajar/'.$status);
     }
     public function updateStatusSiswa($id,$status)
     {
@@ -483,14 +497,21 @@ class admin extends CI_Controller {
                 'alamat'=>$this->input->post('alamat')
         );//print_r($dataPengajar);
         $return_id=$this->Admin_model->insert($dataPengajar,'el_pengajar');
+
+        if ($this->input->post('opsi') == null) {
+            $admin = 0;
+        }else {
+            $admin = 1;
+        }
+
         $dataLogin=array(
             'username'=>$this->input->post('username'),
             'password'=>md5($this->input->post('password')),
             'pengajar_id'=>$return_id,
-            'is_admin'=>$this->input->post('opsi')
+            'is_admin'=> $admin
         );
         $this->Admin_model->insert($dataLogin,'el_login');
-        redirect('Admin/dataadmin/0');
+        redirect('Admin/datapengajar/1');
     }
     public function Pesan()
     {

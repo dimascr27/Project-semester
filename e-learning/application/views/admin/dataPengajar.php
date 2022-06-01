@@ -40,6 +40,7 @@
                                                 </td>
                                                 <td>
                                                     <a type="button" class="btn btn-secondary btn-sm" href="<?=base_url()?>Admin/detailPengajar/<?=$key->id;?>">Detail</a>
+                                                    <button type="button" class="btn btn-danger btn-sm hapus" data-id="<?=$key->id;?>" data-link="admin/hapuspengajar/">Hapus</button>
                                                 <?php if ($key->status_id==0) { ?>
                                                     <a type="button" class="btn btn-success btn-sm" href="<?=base_url()?>Admin/updateStatusPengajar/<?=$key->id;?>/1">Aktif</a>
                                                     <a type="button" class="btn btn-danger btn-sm" href="<?=base_url()?>Admin/updateStatusPengajar/<?=$key->id;?>/2">Blok</a>

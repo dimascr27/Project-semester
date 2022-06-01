@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 31 Bulan Mei 2022 pada 09.51
+-- Waktu pembuatan: 01 Jun 2022 pada 17.35
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.29
 
@@ -43,7 +43,11 @@ CREATE TABLE `el_absen` (
 
 INSERT INTO `el_absen` (`id`, `kelas_id`, `mapel_id`, `pengajar_id`, `tanggal`, `jam_mulai`, `jam_selesai`) VALUES
 (3, 2, 2, 2, '2020-05-04', '11:00:00', '13:00:00'),
-(4, 7, 2, 2, '2020-05-02', '12:15:00', '02:16:00');
+(4, 7, 2, 2, '2020-05-02', '12:15:00', '02:16:00'),
+(5, 2, 2, 15, '0000-00-00', '10:23:00', '10:23:00'),
+(6, 2, 2, 15, '2022-06-01', '10:00:00', '12:09:00'),
+(7, 2, 2, 23, '2022-06-01', '12:00:00', '13:00:00'),
+(8, 2, 2, 14, '2022-06-01', '20:00:00', '21:00:00');
 
 -- --------------------------------------------------------
 
@@ -64,7 +68,14 @@ CREATE TABLE `el_absen_siswa` (
 
 INSERT INTO `el_absen_siswa` (`id`, `absen_id`, `siswa_id`, `status`) VALUES
 (1, 3, 11, 1),
-(2, 4, 2, 1);
+(2, 4, 2, 1),
+(3, 5, 11, 0),
+(4, 6, 11, 0),
+(5, 6, 17, 0),
+(6, 7, 11, 1),
+(7, 7, 17, 1),
+(8, 8, 11, 1),
+(9, 8, 17, 1);
 
 -- --------------------------------------------------------
 
@@ -175,7 +186,12 @@ INSERT INTO `el_kelas_siswa` (`id`, `kelas_id`, `siswa_id`, `aktif`) VALUES
 (7, 2, 11, 1),
 (9, 4, 1, 1),
 (10, 15, 14, 1),
-(11, 7, 2, 1);
+(11, 7, 2, 1),
+(12, 10, 15, 1),
+(13, 2, 17, 0),
+(14, 3, 17, 0),
+(15, 2, 17, 1),
+(16, 3, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -227,7 +243,25 @@ INSERT INTO `el_login` (`id`, `username`, `password`, `siswa_id`, `pengajar_id`,
 (16, 'murid@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', 12, NULL, 0, NULL),
 (17, 'muhammad@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 9, 1, NULL),
 (18, 'riadi@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', 13, NULL, 0, NULL),
-(19, 'pras@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', 14, NULL, 0, NULL);
+(19, 'pras@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', 14, NULL, 0, NULL),
+(20, 'guru1@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 13, 1, NULL),
+(21, 'guru2@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 14, 1, NULL),
+(22, 'siswa2@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', 15, NULL, 0, NULL),
+(23, 'guru3@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 15, 0, NULL),
+(24, 'siswa4@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', 16, NULL, 0, NULL),
+(25, 'mohammad.riadi.acp1@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 16, 0, NULL),
+(26, 'guru5@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 17, 1, NULL),
+(27, 'guru4@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 18, 0, NULL),
+(28, 'mohammad.riadi.acp1@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 19, 1, NULL),
+(29, 'indah@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', 17, NULL, 0, NULL),
+(30, 'guru10@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 20, 1, NULL),
+(31, 'guru1@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 21, 0, NULL),
+(32, 'mohammad.riadi.acp1@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 22, 1, NULL),
+(33, 'guru@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 23, 0, NULL),
+(34, 'neo1@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 24, 0, NULL),
+(35, 'neo2@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 25, 1, NULL),
+(36, 'siswa10@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', 18, NULL, 0, NULL),
+(37, 'guru7@gmail.com', '70452edba19c45f5d0e63be16d4bf11b', NULL, 26, 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -414,7 +448,8 @@ CREATE TABLE `el_mapel_ajar` (
 INSERT INTO `el_mapel_ajar` (`id`, `hari_id`, `jam_mulai`, `jam_selesai`, `pengajar_id`, `mapel_kelas_id`, `aktif`) VALUES
 (1, 1, '08:00:00', '10:30:00', 2, 11, 1),
 (2, 3, '11:00:00', '13:00:00', 2, 11, 1),
-(3, 1, '12:33:00', '01:36:00', 3, 3, 1);
+(3, 1, '12:33:00', '01:36:00', 3, 3, 1),
+(4, 1, '13:21:00', '10:23:00', 15, 2, 1);
 
 -- --------------------------------------------------------
 
@@ -506,7 +541,10 @@ CREATE TABLE `el_materi` (
 
 INSERT INTO `el_materi` (`id`, `mapel_id`, `pengajar_id`, `siswa_id`, `judul`, `konten`, `file`, `tgl_posting`, `publish`, `views`) VALUES
 (1, 1, 2, NULL, 'skuy living', NULL, 'skuy_living_1581519810.docx', '2020-02-12 22:03:30', 1, 1),
-(4, 2, 2, NULL, 'opening', 'data fill', 'catatan7.txt', '2020-05-01 06:52:13', 1, 1);
+(4, 2, 2, NULL, 'opening', 'data fill', 'catatan7.txt', '2020-05-01 06:52:13', 1, 1),
+(5, 2, 15, NULL, 'materi', 'ada', 'KHS_Semester_1.pdf', '2022-06-01 06:47:23', 1, 1),
+(6, 2, 23, NULL, 'materi2', 'materi2', 'KHS_Semester_11.pdf', '2022-06-01 07:08:13', 1, 1),
+(7, 2, 14, NULL, 'Materi', 'Materi', 'E41190143_NailahCahyaPuteri_Abws_(3).pdf', '2022-06-01 14:55:17', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -526,7 +564,10 @@ CREATE TABLE `el_materi_kelas` (
 
 INSERT INTO `el_materi_kelas` (`id`, `materi_id`, `kelas_id`) VALUES
 (1, 1, 11),
-(2, 4, 2);
+(2, 4, 2),
+(3, 5, 2),
+(4, 6, 2),
+(5, 7, 2);
 
 -- --------------------------------------------------------
 
@@ -599,17 +640,23 @@ CREATE TABLE `el_pengajar` (
 --
 
 INSERT INTO `el_pengajar` (`id`, `nip`, `nama`, `jenis_kelamin`, `tempat_lahir`, `tgl_lahir`, `alamat`, `foto`, `status_id`, `id_mapel`) VALUES
-(1, '150212046', 'Muhammad Riadi Prasetiyo', 'Laki-laki', 'BONDOWOSO', '0000-00-00', 'Admin', 'Picture11.png', 1, '2'),
+(23, '45678', 'Muhammad Riadi Prasetiyo', 'Laki-laki', 'BONDOWOSO', '2000-02-17', 'BONDOWOSO', NULL, 1, '2'),
 (2, '123456', 'Dicky Pamungkas', 'Laki-laki', 'penarik', '2999-03-14', 'pbb', 'pengajar-dicky-pamungkas.jpg', 1, '2'),
-(3, '12345', 'diki', 'Laki-laki', 'penarik', '2000-02-16', 'pbb', NULL, 1, '3'),
-(4, '1234123412341234', 'asdf', 'option1', 'asdf', NULL, 'ASDF', NULL, 1, '3'),
+(20, '8478437', 'guru10', 'Laki-laki', 'BONDOWOSO', '2000-03-31', 'BONDOWOSO', NULL, 1, NULL),
+(21, '03837472894', 'guru1', 'Laki-laki', 'BONDOWOSO', '2000-04-29', 'BONDOWOSO', NULL, 1, NULL),
 (5, '666', 'Oliver', 'Laki-laki', 'cekcek', '2020-04-22', 'Cikole', NULL, 2, '4'),
-(6, '09798652', 'Muhammad', 'Laki-laki', 'BONDOWOSO', NULL, 'BONDOWOSO', NULL, 0, NULL),
 (7, '2345678', 'Muhammad', 'Laki-laki', 'BONDOWOSO', '2022-05-31', 'BONDOWOSO', NULL, 1, NULL),
-(8, '2345678', 'Muhammad', 'Laki-laki', 'BONDOWOSO', '2022-05-31', 'BONDOWOSO', NULL, 0, NULL),
 (9, '09798652', 'Muhammad', 'Laki-laki', 'BONDOWOSO', '2022-05-31', 'BONDOWOSO', NULL, 1, NULL),
-(10, '09798652', 'Muhammad', 'Laki-laki', 'BONDOWOSO', '2022-05-31', 'BONDOWOSO', NULL, 0, NULL),
-(11, '09798652', 'Neo', 'Laki-laki', 'BONDOWOSO', '2000-12-20', 'BONDOWOSO', NULL, 1, NULL);
+(10, '09798652', 'Muhammad', 'Laki-laki', 'BONDOWOSO', '2022-05-31', 'BONDOWOSO', NULL, 1, NULL),
+(11, '09798652', 'Neo', 'Laki-laki', 'BONDOWOSO', '2000-12-20', 'BONDOWOSO', NULL, 1, NULL),
+(24, '0979865233', 'Neo P', 'Perempuan', 'BONDOWOSO', '2000-12-12', 'BONDOWOSO', NULL, 1, NULL),
+(12, '09798652', 'p', 'Laki-laki', 'BONDOWOSO', '2022-06-01', 'BONDOWOSO', NULL, 0, NULL),
+(13, '09798652', 'p', 'Laki-laki', 'BONDOWOSO', '2022-06-01', 'BONDOWOSO', NULL, 0, NULL),
+(14, '11221', 'guru2', 'Laki-laki', 'BONDOWOSO', '2022-05-10', 'BONDOWOSO', NULL, 1, '2'),
+(15, '2345452', 'guru3', 'Perempuan', 'BONDOWOSO', NULL, 'BONDOWOSO', NULL, 1, '1'),
+(25, '3827498', 'Neo o', 'Perempuan', 'BONDOWOSO', '2001-12-12', 'BONDOWOSO', 'Picture12.png', 1, NULL),
+(18, '84587857', 'guru4', 'Perempuan', 'BONDOWOSO', NULL, 'BONDOWOSO', NULL, 0, NULL),
+(26, 'udhawurhwf', 'jbsdkfbsjfb', 'Laki-laki', 'BONDOWOSO', '2022-06-01', 'BONDOWOSO', NULL, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -681,7 +728,7 @@ CREATE TABLE `el_pengumuman` (
 
 INSERT INTO `el_pengumuman` (`id`, `judul`, `konten`, `tgl_tampil`, `tgl_tutup`, `tampil_siswa`, `tampil_pengajar`, `pengajar_id`) VALUES
 (1, 'pkn', '<p>haaiiii sekarang kita ada pengumuman yaaa</p>\r\n', '2022-05-05', '2022-05-10', 1, 1, 2),
-(2, 'Tahun Ajaran Baru', 'ADdDqd', '2022-05-31', '2022-05-31', 1, 1, 1);
+(3, 'Tahun Ajaran Baru', 'Tahun Ajaran Baru', '2022-06-01', '2022-06-01', 1, 1, 14);
 
 -- --------------------------------------------------------
 
@@ -748,7 +795,10 @@ INSERT INTO `el_siswa` (`id`, `nis`, `nama`, `jenis_kelamin`, `tempat_lahir`, `t
 (11, '666', 'Satan', 'Laki-laki', 'cekcek', '2020-04-15', 'ISLAM', 'asana', 2021, NULL, 1),
 (12, '3465786', 'murid', 'Perempuan', 'BONDOWOSO', NULL, NULL, 'BONDOWOSO', 2021, NULL, 0),
 (13, '154653', 'Riadi Prasetiyo', 'Laki-laki', 'BONDOWOSO', NULL, NULL, 'BONDOWOSO', 2021, NULL, 0),
-(14, '746789', 'pras', 'Laki-laki', 'BONDOWOSO', '2017-12-28', 'ISLAM', 'BONDOWOSO', 2022, NULL, 1);
+(14, '746789', 'pras', 'Laki-laki', 'BONDOWOSO', '2017-12-28', 'ISLAM', 'BONDOWOSO', 2022, NULL, 1),
+(17, '123', 'Indah', 'Perempuan', 'BONDOWOSO', '2005-06-20', 'ISLAM', 'BONDOWOSO', 2022, NULL, 1),
+(16, '4y737657', 'siswa4', 'Laki-laki', 'BONDOWOSO', NULL, NULL, 'BONDOWOSO', 2021, NULL, 0),
+(18, '32876474', 'jkehfjks', 'Laki-laki', 'BONDOWOSO', '2022-06-01', 'ISLAM', 'BONDOWOSO', 2000, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -803,7 +853,9 @@ CREATE TABLE `el_tugas` (
 INSERT INTO `el_tugas` (`id`, `mapel_id`, `pengajar_id`, `judul`, `info`, `file`, `tgl_buat`, `durasi`, `aktif`, `tampil_siswa`) VALUES
 (4, 2, 2, 'Tugas WFH', 'COBA kerjakan selama korona', 'catatan9.txt', '2020-05-01 09:39:19', '2020-05-14 13:00:00', 1, 1),
 (5, 2, 2, 'tugas wfh', 'kerjain sampai korona', 'catatan10.txt', '2020-05-01 09:48:50', '2020-05-04 07:48:00', 1, 1),
-(6, 2, 1, 'Tugas', 'tugas', 'E41191971_M_devan_Ferdiansyah.pdf', '2022-05-31 09:46:21', '2022-06-05 09:00:00', 1, 1);
+(6, 2, 1, 'Tugas', 'tugas', 'E41191971_M_devan_Ferdiansyah.pdf', '2022-05-31 09:46:21', '2022-06-05 09:00:00', 1, 1),
+(7, 2, 23, 'Tugas', 'TUgas', 'KHS_Semester_1.pdf', '2022-06-01 07:07:27', '2022-06-03 10:00:00', 1, 1),
+(8, 2, 14, 'Tugas', 'tguas', 'DEWI_LESTARI_NINGSIH-FDK.pdf', '2022-06-01 14:53:35', '2000-06-01 21:00:00', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -824,7 +876,9 @@ CREATE TABLE `el_tugas_kelas` (
 INSERT INTO `el_tugas_kelas` (`id`, `tugas_id`, `kelas_id`) VALUES
 (5, 5, 7),
 (4, 4, 2),
-(6, 6, 2);
+(6, 6, 2),
+(7, 7, 2),
+(8, 8, 2);
 
 -- --------------------------------------------------------
 
@@ -894,7 +948,8 @@ CREATE TABLE `el_ujian` (
 INSERT INTO `el_ujian` (`id`, `judul`, `tgl_dibuat`, `tgl_expired`, `waktu`, `mapel_kelas_id`, `pengajar_id`) VALUES
 (1, 'Testingg', '2020-04-30', '2020-05-02', 30, 11, 2),
 (2, 'coba lagi dong', '2020-04-29', '2020-05-02', 20, 3, 2),
-(3, 'asdasdasd', '2020-05-01', '2020-05-04', 10, 11, 2);
+(3, 'asdasdasd', '2020-05-01', '2020-05-04', 10, 11, 2),
+(4, 'p', '2022-06-01', '2022-06-01', 120, 2, 15);
 
 -- --------------------------------------------------------
 
@@ -1142,13 +1197,13 @@ ALTER TABLE `el_ujian_soal`
 -- AUTO_INCREMENT untuk tabel `el_absen`
 --
 ALTER TABLE `el_absen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_absen_siswa`
 --
 ALTER TABLE `el_absen_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_jawaban`
@@ -1166,7 +1221,7 @@ ALTER TABLE `el_kelas`
 -- AUTO_INCREMENT untuk tabel `el_kelas_siswa`
 --
 ALTER TABLE `el_kelas_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_komentar`
@@ -1178,7 +1233,7 @@ ALTER TABLE `el_komentar`
 -- AUTO_INCREMENT untuk tabel `el_login`
 --
 ALTER TABLE `el_login`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_login_log`
@@ -1196,7 +1251,7 @@ ALTER TABLE `el_mapel`
 -- AUTO_INCREMENT untuk tabel `el_mapel_ajar`
 --
 ALTER TABLE `el_mapel_ajar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_mapel_kelas`
@@ -1208,13 +1263,13 @@ ALTER TABLE `el_mapel_kelas`
 -- AUTO_INCREMENT untuk tabel `el_materi`
 --
 ALTER TABLE `el_materi`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_materi_kelas`
 --
 ALTER TABLE `el_materi_kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_messages`
@@ -1232,13 +1287,13 @@ ALTER TABLE `el_nilai_tugas`
 -- AUTO_INCREMENT untuk tabel `el_pengajar`
 --
 ALTER TABLE `el_pengajar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_pengumuman`
 --
 ALTER TABLE `el_pengumuman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_pilihan`
@@ -1250,7 +1305,7 @@ ALTER TABLE `el_pilihan`
 -- AUTO_INCREMENT untuk tabel `el_siswa`
 --
 ALTER TABLE `el_siswa`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_soal`
@@ -1262,13 +1317,13 @@ ALTER TABLE `el_soal`
 -- AUTO_INCREMENT untuk tabel `el_tugas`
 --
 ALTER TABLE `el_tugas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_tugas_kelas`
 --
 ALTER TABLE `el_tugas_kelas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_tugas_kumpul`
@@ -1286,7 +1341,7 @@ ALTER TABLE `el_tugas_pertanyaan`
 -- AUTO_INCREMENT untuk tabel `el_ujian`
 --
 ALTER TABLE `el_ujian`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `el_ujian_soal`

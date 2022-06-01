@@ -17,11 +17,40 @@
     </script>
     <script src="<?= base_url('assets/vendor/circle-progress/circle-progress.min.js') ?>"></script>
     <script src="<?= base_url('assets/vendor/perfect-scrollbar/perfect-scrollbar.js') ?>"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?= base_url('assets/vendor/chartjs/Chart.bundle.min.js') ?>"></script>
     <script src="<?= base_url('assets/vendor/select2/select2.min.js') ?>"></script>
 
      <!-- Main JS-->
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
+
+    <script>
+        $(".hapus").click(function (){
+            var id = $(this).data("id");
+            var link = $(this).data("link");
+
+            Swal.fire({
+                title: 'Yakin?',
+                text: "Yakin ingin menghapus data ini?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Tidak'
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href = '<?=base_url()?>' + link + id;
+                    } else {
+                        Swal.fire(
+                        'Deleted!',
+                        'Data berhasil dihapus.',
+                        'success'
+                        )
+                    }
+                });
+        });
+    </script>
 
 </body>
 

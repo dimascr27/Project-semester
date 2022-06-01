@@ -2,7 +2,7 @@
 <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="#">
-                    <img src="images/user/11231.jpg" alt="Cool Admin" />
+                    <img width="60px" src="<?=base_url()?>assets/images/polije.png" alt="Cool Admin" />
                 </a>
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
